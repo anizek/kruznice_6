@@ -1,26 +1,24 @@
-import math
+# circle_intersection.py
 
-def soucet_polomeru(c1, c2):
-    return c1["r"] + c2["r"]
+# importujeme funkci z modulu circle_stats
+from circle_stats import has_intersection
 
-def vzdalenost_stredu(c1, c2):
-    x = c1["x"] - c2["x"]
-    y = c1["y"] - c2["y"]
-    return math.sqrt(x**2 + y**2)
+# definice dvou kružnic
+c1 = {"x": 0, "y": 0, "r": 2}
+c2 = {"x": 3, "y": 0, "r": 1}
 
-def prunik(c1, c2):
-    s = soucet_polomeru(c1, c2)
-    d = vzdalenost_stredu(c1, c2)
-    if d > s:
-        return 0
-    if d == s:
-        return 1
-    if d < s:
-        return 2
+# zjistíme průnik
+result = has_intersection(c1, c2)
+
+# výpis výsledku
+if result["is_intersection"]:
+    print(f"Kružnice se protínají, počet průniků: {result['intersections_count']}")
+else:
+    print("Kružnice se neprotínají.")
+
+from circles_intersection_draw import draw_data
 
 c1 = {"x": 0, "y": 0, "r": 2}
 c2 = {"x": 3, "y": 0, "r": 1}
 
-print(soucet_polomeru(c1, c2))
-print(vzdalenost_stredu(c1, c2))
-print(prunik(c1, c2))
+draw_data(c1, c2)
